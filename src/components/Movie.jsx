@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-const Movie = ({ item }) => {
+const Movie = ({ item, rowID }) => {
     const [like, setLike] = useState(false);
 
     return (
@@ -10,7 +10,7 @@ const Movie = ({ item }) => {
                 src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
                 alt={item?.title}
             />
-            <div className="absolute  p-2 top-0 left-0 w-full h-full ">
+            <div className="absolute p-2 top-0 left-0 w-full h-full ">
                 <p className="w-full h-full flex justify-center items-center text-white text-xs md:text-sm lg:text-xl opacity-0 hover:opacity-100 hover:text-xl hover:bg-gray-950 transition-all duration-300">
                     {item?.title.slice(0, 20)}
                 </p>
