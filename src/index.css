@@ -1,0 +1,64 @@
+/* Import Tailwind utilities */
+@import 'tailwindcss';
+
+/*border gradient animation start==================================================*/
+/* Add custom keyframes for animation */
+@keyframes border-spin {
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+/* Set background images */
+.bg-banner {
+    background-image: url('/src/assets/banner.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-black-overlay {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+}
+
+/* Define the animation class directly */
+@layer utilities {
+    .card-wrapper {
+        @apply relative overflow-hidden rounded-md bg-gradient-to-b from-slate-700 to-slate-800;
+    }
+
+    .card-wrapper::before {
+        @apply absolute h-[100%] w-[100%] content-[''];
+        background: conic-gradient(
+            rgba(170, 230, 7, 0.7) 0deg,
+            rgba(238, 255, 2, 0.7) 0deg,
+            transparent 100deg
+        );
+        animation: border-spin 3s linear infinite; /* Apply the custom animation here */
+    }
+
+    .card-content {
+        @apply absolute left-[2px] top-[2px] h-[calc(100%-4px)] w-[calc(100%-4px)] rounded-md bg-gradient-to-b from-slate-800 to-slate-900;
+    }
+}
+
+/* explanaton ================================= 
+
+যে  component এর উপরে দিতে চাই, সেটা এই রকম হতে হবে,
+
+<div>
+    <div className="card-wrapper h-[220px] w-[200px]">
+        <div className="card-content flex items-center justify-center text-xs">
+            <div className="max-w-[60%] text-center">
+                This is content
+            </div>
+        </div>
+    </div>
+</div>
+
+*/
+
+/*border gradient animation end==================================================*/
